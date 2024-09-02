@@ -1,4 +1,4 @@
-"""recipes URL Configuration
+"""recipeses URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -16,6 +16,11 @@ Including another URLconf
 
 from django.urls import path
 
+from recipes.calculator.views import recept_view
+
+
+
 urlpatterns = [
+    path('omlet/', recept_view),
     # здесь зарегистрируйте вашу view-функцию
 ]
