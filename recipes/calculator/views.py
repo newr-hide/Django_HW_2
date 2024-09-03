@@ -19,14 +19,21 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-
-recipe = DATA.get('omlet')
-print(recipe)
-
-
 # Напишите ваш обработчик. Используйте DATA как источник данных
-def recept_view(request):
-    return render(request, 'calculator/index.html', recipe)
+def recipe_view(request):
+    tmp_var = request.path[1:-1]
+    context = {}
+    if 'servings' in request.GET:
+        tmp_servings = int(request.GET['servings'])
+    else:
+        tmp_servings = 1
+    for key in DATA.keys():
+        if key == tmp_var:
+            recipe = DATA[key]
+            for key, value in recipe.items():
+                recipe[key] = float(value) * tmp_servings
+            context.update({'recipe': recipe})
+    return render(request,"calculator/index.html", context)
 
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть передан словарь с рецептом:
