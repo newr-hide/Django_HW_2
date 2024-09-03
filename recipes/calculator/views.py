@@ -43,3 +43,5 @@ def recipe_view(request):
 #     'ингредиент2': количество2,
 #   }
 # }
+def home_page_view(request):
+    return render(request, 'calculator/home_page.html')
